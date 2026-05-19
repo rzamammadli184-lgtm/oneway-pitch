@@ -565,20 +565,46 @@
         aiCloseBtn.addEventListener('click', () => aiChatWindow.classList.remove('active'));
 
         const knowledgeBase = {
-            gəlir: "One Way 4 əsas gəlir kanalına sahibdir: 1) Tranzaksiya Komissiyası (Otel və Biletlərdən 15%), 2) eSIM satışından 30% marja, 3) B2B SaaS Paneli, 4) Tətbiqdaxili reklamlar (Premium Listing).",
-            pul: "One Way 4 əsas gəlir kanalına sahibdir: 1) Tranzaksiya Komissiyası (Otel və Biletlərdən 15%), 2) eSIM satışından 30% marja, 3) B2B SaaS Paneli, 4) Tətbiqdaxili reklamlar (Premium Listing).",
-            biznes: "One Way 4 əsas gəlir kanalına sahibdir: 1) Tranzaksiya Komissiyası (Otel və Biletlərdən 15%), 2) eSIM satışından 30% marja, 3) B2B SaaS Paneli, 4) Tətbiqdaxili reklamlar (Premium Listing).",
-            investisiya: "Başlanğıc investisiya tələbi $81K - $105K aralığındadır. Layihənin 2-ci ildə gəlirlilik nöqtəsinə (Break-even) çatması planlaşdırılır.",
-            xərc: "Başlanğıc investisiya tələbi $81K - $105K aralığındadır. Layihənin 2-ci ildə gəlirlilik nöqtəsinə (Break-even) çatması planlaşdırılır.",
-            bazar: "Qlobal turizm bazarı $1.9 Trilyon həcmindədir. Azərbaycana isə illik 3 Milyondan çox turist gəlir və hazırda lokal super-app rəqibi yoxdur ($0 rəqabət).",
-            rəqib: "Azərbaycanda hazırda bu miqyasda inteqrasiya olunmuş (eSIM, Taksi, Fintech, AI Bələdçi) rəqib yoxdur.",
-            problem: "Turistlərin əsas 3 problemi var: Bağlantı (SIM kart növbələri/Rouminq), Maliyyə İtkisi (Məzənnə fərqi/Gizli komissiyalar) və App Fatigue (Çoxsaylı fərqli tətbiqlərdən istifadə məcburiyyəti).",
-            həll: "Həll 'One Way Ekosistemi'dir. Tətbiq turistlər üçün Rəqəmsal Pasport rolunu oynayır: eSIM Data, Smart Taxi, Live Tickets, AI Concierge, Global Wallet və s. bir mərkəzdə cəmləşir.",
-            mənfəət: "Maliyyə proqnozuna görə 2-ci ildə mənfəət təxminən 130K$, 3-cü ildə isə 800K$ səviyyəsində gözlənilir. Ortalama marja 20%+ təşkil edir.",
-            dəyər: "3-cü ilin sonunda One Way üçün proqnozlaşdırılan dəyərləndirmə (Valuation) təxminən $12.0 Milyondur (10x return).",
-            roadmap: "Yol xəritəsi: İl 1 - Bakı (5K Aktiv istifadəçi), İl 2 - Gürcüstan və Türkiyə genişlənməsi, İl 3 - Qlobal şəbəkə (100K+ istifadəçi).",
-            niyə: "Niyə biz? Çünki biz ilk lokal super-appıq, AI və eSIM kimi birbaşa tətbiq edilən texnoloji üstünlüyə (Tech-Edge) və qlobal miqyasda böyüyə bilən (Scalable) End-to-End modelə sahibik.",
-            əlaqə: "İnvestisiya və əməkdaşlıq üçün invest@oneway.global ünvanı ilə əlaqə saxlaya bilərsiniz."
+            "azərbaycan": `[AZƏRBAYCAN BAZARI ANALİZİ & STRATEGİYASI]
+• Bazar Durumu: İllik 3M+ xarici turist hədəfi. Xarici turistlərin ən böyük axını Körfəz (BƏƏ, Səudiyyə Ərəbistanı), Rusiya, Türkiyə və Hindistan bazarlarındandır.
+• Airport-to-City Təcrübəsi: Hava limanına enən turistin ilk toxunuşu (SIM kart növbələri, qeyri-şəffaf taksi qiymətləri) neqativ təəssürat yaradır. One Way bunu 'Airport Onboarding Flow' ilə saniyələr içində həll edir.
+• Boşluqlar & Fintech: Ölkədə vahid rəqəmsal turizm super-appı yoxdur ($0 rəqabət). API inteqrasiyaları (iTicket, yerli taksi aqreqatorları) pərakəndədir. One Way vahid 'Travel Wallet' və loyallıq sistemi ilə bu boşluğu tamamilə doldurur.`,
+            
+            "global": `[GLOBAL ECOSYSTEM ANALİZİ & 2026+ TRENDS]
+• Rəqib Analizi: Booking (yalnız otel), Airbnb (yalnız ev/təcrübə), TripAdvisor (yalnız rəy), Uber (yalnız taksi) kimi platformalar 'Silo' (parçalanmış) işləyir. 
+• Super App Modeli: Asiyada Grab və Gojek kimi uğurlu nümunələr var, lakin Qərb və Yaxın Şərq regionunda turizm yönümlü 'AI-Native Super App' yoxdur.
+• 2026+ Trendi: Səyahətdə hiper-fərdiləşdirmə (Hyper-Personalization), eSIM əsaslı ani bağlantı və AI Concierge xidmətləri əsas hərəkətverici qüvvələrdir.`,
+            
+            "strategiya": `[ONE WAY ECOSYSTEM STRATEGİYASI]
+• Unique Positioning: One Way - turistin bütün səyahətini əhatə edən 'Rəqəmsal Pasport'dur.
+• Ambassador & Referral: Xarici ölkələrdəki turizm agentləri və yerli inflüenserlər üçün 'Ambassador Program' və viral referral (dostunu dəvət et, pul qazan) mexanizmləri qurulur.
+• Retention & Subscription: Turistləri ekosistemdə saxlamaq üçün premium imtiyazlar (hava limanında VIP transfer, pulsuz eSIM data) təklif edən 'One Way Prime' abunəlik modeli tətbiq olunur.`,
+            
+            "ai": `[AI İNTEQRASİYALARI (WORLD-CLASS TECH)]
+• AI Concierge: Turistin büdcəsinə, maraqlarına (tarix, qastronomiya, əyləncə) uyğun 5 saniyədə şəxsi marşrut hazırlayan 'AI Trip Planner'.
+• AI Voice & Translation: Yerli əhali ilə maneəsiz ünsiyyət üçün real-time səsli tərcümə sistemi (AI Translation Assistant).
+• AI Dynamic Pricing: Otellər və tərəfdaşlar üçün tələb-təklifə əsasən qiymətləri optimallaşdıran ağıllı alqoritmlər.`,
+            
+            "texnoloji": `[TEXNOLOJİ MEMARLIQ & API ECOSYSTEM]
+• Arxitektura: API-First & Microservices infrastrukturu (Node.js/Go backend, React Native cross-platform mobil tətbiq).
+• İnteqrasiyalar: eSIM provayderləri ilə birbaşa BLE/eSIM API, Mapbox ilə lokal naviqasiya və yerli bankların ödəniş ştlyuzları ilə PCI DSS uyğunluqlu təhlükəsiz inteqrasiya.
+• Scalability: AWS və Cloudflare üzərində qurulmuş, milyonlarla istifadəçinin eyni anda sorğu göndərə biləcəyi elastik server infrastrukturu.`,
+            
+            "monetizasiya": `[MONETİZASİYA & GƏLİR MODELİ]
+• Komissiya: Otel, bilet və fəaliyyət satışlarından 15%-dək tranzaksiya haqqı.
+• eSIM Satışı: Yüksək rentabelli eSIM data paketlərindən 30% birbaşa marja.
+• B2B SaaS: Yerli restoran və brendlər üçün müştəri analitikası təqdim edən aylıq abunəlik paneli.
+• Fintech: Virtual ödəniş kartları üzərindən tranzaksiya komissiyaları və interchange gəlirləri.`,
+            
+            "investor": `[INVESTOR DECK & UNICORN ANALİZİ]
+• TAM/SAM/SOM: Qlobal turizm bazarı (TAM) $1.9T, Yaxın Şərq və regional hədəf (SAM) $25B, ilk mərhələ yerli bazar (SOM) $150M.
+• Maliyyə Proqnozu: $81K - $105K başlanğıc investisiya ilə 2-ci ildə break-even nöqtəsi və 3-cü ildə ~$12M şirkət dəyərləndirilməsi (Valuation).
+• Unicorn Potensialı: Azərbaycan test bazarı olaraq istifadə edilərək, asanlıqla Körfəz (GCC) və digər inkişaf etməkdə olan bazarlara transfer oluna bilən yüksək miqyaslı (highly scalable) model.`,
+            
+            "ux": `[UX/UI VƏ MƏHSUL FƏLSƏFƏSİ]
+• Apple-Level Premium UX: Sıfır yüklənmə vaxtı, minimalist 'Dark Mode' dizayn, 'Plus Jakarta Sans' tipoqrafiyası və hamar animasiyalar.
+• 1-Click Onboarding: Telefon nömrəsi və ya Google/Apple ID ilə saniyələr içində qeydiyyat, hava limanına enən kimi eSIM-in avtomatik aktivləşməsi.
+• Gestalt Prinsipləri: Eyni funksionallığa malik xidmətlərin vizual qruplaşdırılması, zərif şüşəvari (glassmorphism) kartlar və intuitiv naviqasiya.`
         };
 
         function addMessage(text, isUser) {
@@ -591,13 +617,39 @@
 
         function analyzeAndRespond(query) {
             const q = query.toLowerCase();
-            let response = "Bağışlayın, təqdimat məlumatlarında bu sualın tam cavabını tapa bilmədim. Xahiş edirəm 'bazar', 'investisiya', 'gəlir', 'problem' və ya 'əlaqə' barədə soruşun.";
-            
-            for (const [key, val] of Object.entries(knowledgeBase)) {
-                if (q.includes(key)) {
-                    response = val;
-                    break;
-                }
+            let matchedKey = null;
+
+            // Robust keyword/synonym mapping to the 8 core strategic modules
+            if (q.includes("azərbaycan") || q.includes("baku") || q.includes("bakı") || q.includes("yerli") || q.includes("hava") || q.includes("airport")) {
+                matchedKey = "azərbaycan";
+            } else if (q.includes("global") || q.includes("qlobal") || q.includes("trend") || q.includes("rəqib") || q.includes("booking") || q.includes("airbnb")) {
+                matchedKey = "global";
+            } else if (q.includes("strategiya") || q.includes("passport") || q.includes("pasport") || q.includes("ambassador") || q.includes("referral") || q.includes("prime") || q.includes("abunə")) {
+                matchedKey = "strategiya";
+            } else if (q.includes("ai") || q.includes("süni") || q.includes("bələdçi") || q.includes("concierge") || q.includes("planner") || q.includes("tərcümə")) {
+                matchedKey = "ai";
+            } else if (q.includes("texnoloji") || q.includes("memarlıq") || q.includes("api") || q.includes("backend") || q.includes("server") || q.includes("system")) {
+                matchedKey = "texnoloji";
+            } else if (q.includes("monetizasiya") || q.includes("gəlir") || q.includes("reklam") || q.includes("saas") || q.includes("komissiya") || q.includes("pul")) {
+                matchedKey = "monetizasiya";
+            } else if (q.includes("investor") || q.includes("investisiya") || q.includes("maliyyə") || q.includes("dəyər") || q.includes("valuation") || q.includes("unicorn") || q.includes("tam") || q.includes("sam") || q.includes("som")) {
+                matchedKey = "investor";
+            } else if (q.includes("ux") || q.includes("ui") || q.includes("dizayn") || q.includes("apple") || q.includes("onboarding") || q.includes("gestalt")) {
+                matchedKey = "ux";
+            }
+
+            let response = "Təqdimat analitiki olaraq bu sualı tam cavablaya bilmədim. Xahiş edirəm aşağıdakı mövzulardan birini soruşun:\n" +
+                           "• Azərbaycan (yerli bazar boşluqları və çətinliklər)\n" +
+                           "• Global (rəqabət və super-app modelləri)\n" +
+                           "• Strategiya (Unique Positioning və Ambassador)\n" +
+                           "• AI (AI Concierge və Trip Planner)\n" +
+                           "• Texnoloji (API və Microservices arxitekturası)\n" +
+                           "• Monetizasiya (SaaS, eSIM marjası və gəlir)\n" +
+                           "• Investor (Maliyyə proqnozu, TAM/SAM/SOM və Unicorn)\n" +
+                           "• UX/UI (Apple-level minimalist onboarding)";
+
+            if (matchedKey && knowledgeBase[matchedKey]) {
+                response = knowledgeBase[matchedKey];
             }
             setTimeout(() => addMessage(response, false), 500);
         }
