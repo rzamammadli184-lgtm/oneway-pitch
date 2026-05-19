@@ -188,9 +188,25 @@
             align-items: center; justify-content: space-between; font-weight: 600;
         }
         .ai-chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .ai-chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.4; }
-        .ai-bubble-bot { background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; }
+        .ai-chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; }
+        .ai-bubble-bot { background: rgba(15, 23, 42, 0.85); border: 1px solid var(--glass-border); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; }
         .ai-bubble-user { background: var(--gradient); color: var(--bg); align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+        
+        /* Notion Style Formatting Elements */
+        .notion-h3 { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 8px; border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; }
+        .notion-callout { background: rgba(34, 211, 238, 0.05); border-left: 3px solid var(--accent); padding: 8px 12px; margin: 8px 0; border-radius: 4px; font-size: 13px; color: #e2e8f0; }
+        .notion-list { list-style: none; padding-left: 5px; }
+        .notion-list li { margin: 6px 0; display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
+        .notion-list li::before { content: "•"; color: var(--accent); font-weight: bold; }
+        
+        /* Suggested Topics Pill Buttons */
+        .ai-suggested-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 5px 0; }
+        .ai-suggested-btn {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border);
+            color: var(--text-dim); padding: 6px 12px; border-radius: 100px; font-size: 11px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .ai-suggested-btn:hover { background: rgba(34, 211, 238, 0.15); border-color: var(--accent); color: white; }
         
         .ai-chat-input-area { padding: 15px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; }
         .ai-chat-input-area input {
@@ -475,7 +491,18 @@
         </div>
         <div class="ai-chat-body" id="ai-chat-body">
             <div class="ai-chat-bubble ai-bubble-bot">
-                Salam! Mən One Way AI. Prezentasiyadakı məlumatlara əsaslanaraq hər hansı sualınızı (bazar həcmi, rəqəmlər, biznes modeli və s.) cavablamağa hazıram.
+                Salam! Mən One Way AI. Təqdimatdakı məlumatlara əsaslanaraq hər hansı sualınızı cavablamağa hazıram.<br><br>
+                <b>Sürətli Mövzular:</b>
+                <div class="ai-suggested-container">
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('azərbaycan')">🇦🇿 Azərbaycan Bazarı</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('global')">🌍 Global Rəqabət</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('strategiya')">🚀 One Way Strategiyası</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('ai')">💡 AI İnteqrasiyaları</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('texnoloji')">🛠️ Texnoloji Memarlıq</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('monetizasiya')">📈 Monetizasiya & Gəlir</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('investor')">🦄 İnvestisiya & Financials</button>
+                    <button class="ai-suggested-btn" onclick="triggerQuickQuery('ux')">🎨 Premium UX/UI</button>
+                </div>
             </div>
         </div>
         <div class="ai-chat-input-area">
@@ -565,52 +592,77 @@
         aiCloseBtn.addEventListener('click', () => aiChatWindow.classList.remove('active'));
 
         const knowledgeBase = {
-            "azərbaycan": `[AZƏRBAYCAN BAZARI ANALİZİ & STRATEGİYASI]
-• Bazar Durumu: İllik 3M+ xarici turist hədəfi. Xarici turistlərin ən böyük axını Körfəz (BƏƏ, Səudiyyə Ərəbistanı), Rusiya, Türkiyə və Hindistan bazarlarındandır.
-• Airport-to-City Təcrübəsi: Hava limanına enən turistin ilk toxunuşu (SIM kart növbələri, qeyri-şəffaf taksi qiymətləri) neqativ təəssürat yaradır. One Way bunu 'Airport Onboarding Flow' ilə saniyələr içində həll edir.
-• Boşluqlar & Fintech: Ölkədə vahid rəqəmsal turizm super-appı yoxdur ($0 rəqabət). API inteqrasiyaları (iTicket, yerli taksi aqreqatorları) pərakəndədir. One Way vahid 'Travel Wallet' və loyallıq sistemi ilə bu boşluğu tamamilə doldurur.`,
+            "azərbaycan": `<div class="notion-h3">🇦🇿 Azərbaycan Turizm Bazarı & Strategiyası</div>
+<div class="notion-callout">İllik 3M+ xarici turist hədəfi ilə böyük regional potensial mövcuddur.</div>
+<ul class="notion-list">
+  <li><b>Bazar Durumu:</b> Ən böyük turist axını Körfəz ölkələri (BƏƏ, Səudiyyə Ərəbistanı), Rusiya, Türkiyə və Hindistandandır.</li>
+  <li><b>Airport-to-City Təcrübəsi:</b> Hava limanına enən turistin ilk toxunuşu (SIM kart növbələri, qeyri-şəffaf taksi qiymətləri) neqativ təəssürat yaradır. One Way bunu "Airport Onboarding Flow" ilə saniyələr içində həll edir.</li>
+  <li><b>Boşluqlar & Fintech:</b> Ölkədə vahid rəqəmsal turizm super-appı yoxdur ($0 rəqabət). One Way vahid Travel Wallet və loyallıq sistemi ilə bu boşluğu tamamilə doldurur.</li>
+</ul>`,
             
-            "global": `[GLOBAL ECOSYSTEM ANALİZİ & 2026+ TRENDS]
-• Rəqib Analizi: Booking (yalnız otel), Airbnb (yalnız ev/təcrübə), TripAdvisor (yalnız rəy), Uber (yalnız taksi) kimi platformalar 'Silo' (parçalanmış) işləyir. 
-• Super App Modeli: Asiyada Grab və Gojek kimi uğurlu nümunələr var, lakin Qərb və Yaxın Şərq regionunda turizm yönümlü 'AI-Native Super App' yoxdur.
-• 2026+ Trendi: Səyahətdə hiper-fərdiləşdirmə (Hyper-Personalization), eSIM əsaslı ani bağlantı və AI Concierge xidmətləri əsas hərəkətverici qüvvələrdir.`,
+            "global": `<div class="notion-h3">🌍 Global Ecosystem Analizi & 2026+ Trends</div>
+<div class="notion-callout">Mövcud nəhənglər parçalanmış və birtərəfli xidmət təqdim edirlər.</div>
+<ul class="notion-list">
+  <li><b>Rəqib Analizi:</b> Booking (yalnız otel), Airbnb (yalnız ev/təcrübə), TripAdvisor (yalnız rəy), Uber (yalnız taksi) kimi platformalar 'Silo' (parçalanmış) işləyir.</li>
+  <li><b>Super App Modeli:</b> Asiyada Grab və Gojek kimi uğurlu nümunələr var, lakin Qərb və Yaxın Şərq regionunda turizm yönümlü 'AI-Native Super App' yoxdur.</li>
+  <li><b>2026+ Trendi:</b> Səyahətdə hiper-fərdiləşdirmə (Hyper-Personalization), eSIM əsaslı ani bağlantı və AI Concierge xidmətləri əsas hərəkətverici qüvvələrdir.</li>
+</ul>`,
             
-            "strategiya": `[ONE WAY ECOSYSTEM STRATEGİYASI]
-• Unique Positioning: One Way - turistin bütün səyahətini əhatə edən 'Rəqəmsal Pasport'dur.
-• Ambassador & Referral: Xarici ölkələrdəki turizm agentləri və yerli inflüenserlər üçün 'Ambassador Program' və viral referral (dostunu dəvət et, pul qazan) mexanizmləri qurulur.
-• Retention & Subscription: Turistləri ekosistemdə saxlamaq üçün premium imtiyazlar (hava limanında VIP transfer, pulsuz eSIM data) təklif edən 'One Way Prime' abunəlik modeli tətbiq olunur.`,
+            "strategiya": `<div class="notion-h3">🚀 One Way Ekosistem Strategiyası</div>
+<div class="notion-callout">One Way sadəcə tətbiq deyil – turistin "Rəqəmsal Pasport"udur.</div>
+<ul class="notion-list">
+  <li><b>Unique Positioning:</b> Turistin bütün səyahət lifecycle-ını (oteldən skuterə, restorandan bilete) vahid nöqtədən idarə edir.</li>
+  <li><b>Ambassador & Referral:</b> Xarici ölkələrdəki turizm agentləri və yerli inflüenserlər üçün 'Ambassador Program' və viral referral (dostunu dəvət et, pul qazan) mexanizmləri qurulur.</li>
+  <li><b>Retention & Subscription:</b> Turistləri ekosistemdə saxlamaq üçün premium imtiyazlar (hava limanında VIP transfer, pulsuz eSIM data) təklif edən 'One Way Prime' abunəlik modeli tətbiq olunur.</li>
+</ul>`,
             
-            "ai": `[AI İNTEQRASİYALARI (WORLD-CLASS TECH)]
-• AI Concierge: Turistin büdcəsinə, maraqlarına (tarix, qastronomiya, əyləncə) uyğun 5 saniyədə şəxsi marşrut hazırlayan 'AI Trip Planner'.
-• AI Voice & Translation: Yerli əhali ilə maneəsiz ünsiyyət üçün real-time səsli tərcümə sistemi (AI Translation Assistant).
-• AI Dynamic Pricing: Otellər və tərəfdaşlar üçün tələb-təklifə əsasən qiymətləri optimallaşdıran ağıllı alqoritmlər.`,
+            "ai": `<div class="notion-h3">💡 AI İnteqrasiyaları (World-Class Tech)</div>
+<div class="notion-callout">Süni intellekt sayəsində 100% fərdiləşdirilmiş səyahət təcrübəsi.</div>
+<ul class="notion-list">
+  <li><b>AI Concierge:</b> Turistin büdcəsinə, maraqlarına (tarix, qastronomiya, əyləncə) uyğun 5 saniyədə şəxsi marşrut hazırlayan 'AI Trip Planner'.</li>
+  <li><b>AI Voice & Translation:</b> Yerli əhali ilə maneəsiz ünsiyyət üçün real-time səsli tərcümə sistemi (AI Translation Assistant).</li>
+  <li><b>AI Dynamic Pricing:</b> Otellər və tərəfdaşlar üçün tələb-təklifə əsasən qiymətləri optimallaşdıran ağıllı alqoritmlər.</li>
+</ul>`,
             
-            "texnoloji": `[TEXNOLOJİ MEMARLIQ & API ECOSYSTEM]
-• Arxitektura: API-First & Microservices infrastrukturu (Node.js/Go backend, React Native cross-platform mobil tətbiq).
-• İnteqrasiyalar: eSIM provayderləri ilə birbaşa BLE/eSIM API, Mapbox ilə lokal naviqasiya və yerli bankların ödəniş ştlyuzları ilə PCI DSS uyğunluqlu təhlükəsiz inteqrasiya.
-• Scalability: AWS və Cloudflare üzərində qurulmuş, milyonlarla istifadəçinin eyni anda sorğu göndərə biləcəyi elastik server infrastrukturu.`,
+            "texnoloji": `<div class="notion-h3">🛠️ Texnoloji Memarlıq & API Ecosystem</div>
+<div class="notion-callout">API-First yanaşma ilə asan tərəfdaş inteqrasiyası və böyük miqyaslılıq.</div>
+<ul class="notion-list">
+  <li><b>Arxitektura:</b> Microservices infrastrukturu (Node.js/Go backend, React Native cross-platform mobil tətbiq).</li>
+  <li><b>İnteqrasiyalar:</b> eSIM provayderləri ilə birbaşa BLE/eSIM API, Mapbox ilə lokal naviqasiya və yerli bankların ödəniş şlüzləri ilə inteqrasiya.</li>
+  <li><b>Scalability:</b> AWS və Cloudflare üzərində qurulmuş, milyonlarla istifadəçinin eyni anda sorğu göndərə biləcəyi elastik server infrastrukturu.</li>
+</ul>`,
             
-            "monetizasiya": `[MONETİZASİYA & GƏLİR MODELİ]
-• Komissiya: Otel, bilet və fəaliyyət satışlarından 15%-dək tranzaksiya haqqı.
-• eSIM Satışı: Yüksək rentabelli eSIM data paketlərindən 30% birbaşa marja.
-• B2B SaaS: Yerli restoran və brendlər üçün müştəri analitikası təqdim edən aylıq abunəlik paneli.
-• Fintech: Virtual ödəniş kartları üzərindən tranzaksiya komissiyaları və interchange gəlirləri.`,
+            "monetizasiya": `<div class="notion-h3">📈 Monetizasiya & Gəlir Modeli</div>
+<div class="notion-callout">Həm B2C, həm də B2B tərəfdaşlardan gələn şaxələndirilmiş gəlir axını.</div>
+<ul class="notion-list">
+  <li><b>Komissiya:</b> Otel, bilet və fəaliyyət satışlarından 15%-dək tranzaksiya haqqı.</li>
+  <li><b>eSIM Satışı:</b> Yüksək rentabelli eSIM data paketlərindən 30% birbaşa marja.</li>
+  <li><b>B2B SaaS:</b> Yerli restoran və brendlər üçün müştəri analitikası təqdim edən aylıq abunəlik paneli.</li>
+  <li><b>Fintech:</b> Virtual ödəniş kartları üzərindən tranzaksiya komissiyaları və interchange gəlirləri.</li>
+</ul>`,
             
-            "investor": `[INVESTOR DECK & UNICORN ANALİZİ]
-• TAM/SAM/SOM: Qlobal turizm bazarı (TAM) $1.9T, Yaxın Şərq və regional hədəf (SAM) $25B, ilk mərhələ yerli bazar (SOM) $150M.
-• Maliyyə Proqnozu: $81K - $105K başlanğıc investisiya ilə 2-ci ildə break-even nöqtəsi və 3-cü ildə ~$12M şirkət dəyərləndirilməsi (Valuation).
-• Unicorn Potensialı: Azərbaycan test bazarı olaraq istifadə edilərək, asanlıqla Körfəz (GCC) və digər inkişaf etməkdə olan bazarlara transfer oluna bilən yüksək miqyaslı (highly scalable) model.`,
+            "investor": `<div class="notion-h3">🦄 İnvestisiya & Financials (Unicorn Potential)</div>
+<div class="notion-callout">Düşük başlanğıc xərcləri və yüksək regional böyümə potensialı.</div>
+<ul class="notion-list">
+  <li><b>TAM/SAM/SOM:</b> Qlobal turizm bazarı (TAM) $1.9T, Yaxın Şərq və regional hədəf (SAM) $25B, ilk mərhələ yerli bazar (SOM) $150M.</li>
+  <li><b>Maliyyə Proqnozu:</b> $81K - $105K başlanğıc investisiya ilə 2-ci ildə break-even nöqtəsi və 3-cü ildə ~$12M şirkət dəyərləndirilməsi (Valuation).</li>
+  <li><b>Unicorn Potensialı:</b> Azərbaycan test bazarı olaraq istifadə edilərək, asanlıqla Körfəz (GCC) və digər inkişaf etməkdə olan bazarlara transfer oluna bilən model.</li>
+</ul>`,
             
-            "ux": `[UX/UI VƏ MƏHSUL FƏLSƏFƏSİ]
-• Apple-Level Premium UX: Sıfır yüklənmə vaxtı, minimalist 'Dark Mode' dizayn, 'Plus Jakarta Sans' tipoqrafiyası və hamar animasiyalar.
-• 1-Click Onboarding: Telefon nömrəsi və ya Google/Apple ID ilə saniyələr içində qeydiyyat, hava limanına enən kimi eSIM-in avtomatik aktivləşməsi.
-• Gestalt Prinsipləri: Eyni funksionallığa malik xidmətlərin vizual qruplaşdırılması, zərif şüşəvari (glassmorphism) kartlar və intuitiv naviqasiya.`
+            "ux": `<div class="notion-h3">🎨 Premium UX/UI Və Məhsul Fəlsəfəsi</div>
+<div class="notion-callout">Apple standartlarında minimalist və zərif istifadəçi təcrübəsi.</div>
+<ul class="notion-list">
+  <li><b>Apple-Level UX:</b> Sıfır yüklənmə vaxtı, minimalist 'Dark Mode' dizayn, 'Plus Jakarta Sans' tipoqrafiyası və hamar animasiyalar.</li>
+  <li><b>1-Click Onboarding:</b> Telefon nömrəsi və ya Google/Apple ID ilə saniyələr içində qeydiyyat, hava limanına enən kimi eSIM-in avtomatik aktivləşməsi.</li>
+  <li><b>Gestalt Prinsipləri:</b> Eyni funksionallığa malik xidmətlərin vizual qruplaşdırılması, zərif şüşəvari (glassmorphism) kartlar və intuitiv naviqasiya.</li>
+</ul>`
         };
 
         function addMessage(text, isUser) {
             const div = document.createElement('div');
             div.className = `ai-chat-bubble ${isUser ? 'ai-bubble-user' : 'ai-bubble-bot'}`;
-            div.textContent = text;
+            // Render HTML to support rich Notion formatting (headers, callouts, lists)
+            div.innerHTML = text;
             aiChatBody.appendChild(div);
             aiChatBody.scrollTop = aiChatBody.scrollHeight;
         }
@@ -638,21 +690,42 @@
                 matchedKey = "ux";
             }
 
-            let response = "Təqdimat analitiki olaraq bu sualı tam cavablaya bilmədim. Xahiş edirəm aşağıdakı mövzulardan birini soruşun:\n" +
-                           "• Azərbaycan (yerli bazar boşluqları və çətinliklər)\n" +
-                           "• Global (rəqabət və super-app modelləri)\n" +
-                           "• Strategiya (Unique Positioning və Ambassador)\n" +
-                           "• AI (AI Concierge və Trip Planner)\n" +
-                           "• Texnoloji (API və Microservices arxitekturası)\n" +
-                           "• Monetizasiya (SaaS, eSIM marjası və gəlir)\n" +
-                           "• Investor (Maliyyə proqnozu, TAM/SAM/SOM və Unicorn)\n" +
-                           "• UX/UI (Apple-level minimalist onboarding)";
+            let response = `<div class="notion-h3">Təqdimat Analitiki</div>
+<div class="notion-callout">Sualınızı tam analiz edə bilmədim.</div>
+Xahiş edirəm aşağıdakı standart başlıqlara klik edin və ya yazın:
+<div class="ai-suggested-container">
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('azərbaycan')">🇦🇿 Azərbaycan Bazarı</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('global')">🌍 Global Rəqabət</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('strategiya')">🚀 One Way Strategiyası</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('ai')">💡 AI İnteqrasiyaları</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('texnoloji')">🛠️ Texnoloji Memarlıq</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('monetizasiya')">📈 Monetizasiya & Gəlir</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('investor')">🦄 İnvestisiya & Financials</button>
+    <button class="ai-suggested-btn" onclick="triggerQuickQuery('ux')">🎨 Premium UX/UI</button>
+</div>`;
 
             if (matchedKey && knowledgeBase[matchedKey]) {
                 response = knowledgeBase[matchedKey];
             }
             setTimeout(() => addMessage(response, false), 500);
         }
+
+        // Global function to trigger search when suggested pills are clicked
+        window.triggerQuickQuery = function(topicKey) {
+            let userQuestion = "";
+            switch(topicKey) {
+                case 'azərbaycan': userQuestion = "Azərbaycan turizm bazarı və fürsətləri barədə analiz təqdim et."; break;
+                case 'global': userQuestion = "Qlobal turizm ekosistemi və rəqabət trendləri nələrdir?"; break;
+                case 'strategiya': userQuestion = "One Way platformasının unikal mövqeləndirmə strategiyası necədir?"; break;
+                case 'ai': userQuestion = "Platformada hansı AI inteqrasiyaları və köməkçiləri olacaq?"; break;
+                case 'texnoloji': userQuestion = "Sistem arxitekturası və texnoloji infrastruktur necə qurulub?"; break;
+                case 'monetizasiya': userQuestion = "Gəlir kanalları və monetizasiya modelləri hansılardır?"; break;
+                case 'investor': userQuestion = "İnvestor maliyyə proqnozları, TAM/SAM/SOM və Unicorn dəyərləndirilməsi."; break;
+                case 'ux': userQuestion = "Məhsulun dizayn fəlsəfəsi və Apple-level UX prinsipləri."; break;
+            }
+            addMessage(userQuestion, true);
+            analyzeAndRespond(userQuestion);
+        };
 
         function handleSend() {
             const text = aiInput.value.trim();
