@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Way - Qlobal Turizm ƏS | Strateji Həllər Prezentasiyası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --primary: #0A1128;
+            --secondary: #16213E;
+            --accent: #FFD700;
+            --text: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.7);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--primary); color: var(--text); overflow: hidden; }
+
+        .presentation-container { width: 100vw; height: 100vh; position: relative; }
+        .slide {
+            width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 60px 10%; position: absolute; top: 0; left: 0; opacity: 0; visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background: linear-gradient(135deg, #0A1128 0%, #16213E 100%);
+        }
+        .slide.active { opacity: 1; visibility: visible; transform: scale(1); }
+        .slide.past { transform: translateX(-100vw) scale(0.8); }
+        .slide.future { transform: translateX(100vw) scale(0.8); }
+
+        .logo-box { position: absolute; top: 30px; left: 40px; display: flex; align-items: center; gap: 12px; z-index: 100; }
+        .logo-text { font-weight: 800; font-size: 22px; letter-spacing: 2px; color: var(--accent); }
+
+        h1 { font-size: 64px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-align: center; }
+        h2 { font-size: 38px; font-weight: 700; color: var(--accent); margin-bottom: 20px; align-self: flex-start; }
+        .subtitle { font-size: 18px; color: var(--text-dim); margin-bottom: 30px; max-width: 900px; text-align: center; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-top: 20px; }
+        .card { background: var(--glass); border: 1px solid var(--glass-border); padding: 25px; border-radius: 20px; backdrop-filter: blur(15px); }
+        .card i { font-size: 32px; color: var(--accent); margin-bottom: 12px; }
+        .card h3 { font-size: 20px; margin-bottom: 10px; }
+        .card p { color: var(--text-dim); line-height: 1.4; font-size: 13px; }
+
+        .list-style { list-style: none; width: 100%; }
+        .list-style li { padding: 12px; margin-bottom: 10px; border-radius: 10px; display: flex; align-items: center; gap: 12px; font-size: 15px; background: var(--glass); border: 1px solid var(--glass-border); }
+        .list-style li b { color: var(--accent); margin-right: 5px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: var(--glass); border-radius: 15px; overflow: hidden; font-size: 14px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--glass-border); }
+        th { background: rgba(255, 215, 0, 0.1); color: var(--accent); }
+
+        .nav-controls { position: absolute; bottom: 30px; right: 40px; display: flex; gap: 15px; z-index: 100; }
+        .nav-btn { width: 44px; height: 44px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-border); color: white; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        .nav-btn:hover { background: var(--accent); color: var(--primary); }
+        .slide-number { position: absolute; bottom: 30px; left: 40px; font-size: 14px; color: var(--text-dim); }
+
+        /* Animation for icons */
+        .pulse { animation: pulse-icon 2s infinite; }
+        @keyframes pulse-icon { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+
+        .tech-tag { display: inline-block; padding: 4px 10px; background: rgba(0, 245, 255, 0.1); border: 1px solid #00F5FF; border-radius: 6px; font-size: 11px; margin-right: 5px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="logo-box">
+        <div class="logo-text">One Way</div>
+    </div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Giriş -->
+        <section class="slide active">
+            <h1>Global Tourism <br> <span style="color: var(--accent);">Operating System</span></h1>
+            <p class="subtitle">Səyahət Sənayesi üçün Strateji Həllər və Texniki İnteqrasiya Modeli</p>
+            <div style="display: flex; gap: 40px; margin-top: 30px;">
+                <div class="card" style="text-align: center; min-width: 200px;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--accent);">V.2.0</div>
+                    <p>Strategiya Dekabr 2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Missiya -->
+        <section class="slide future">
+            <h2>Missiya və Vizyon</h2>
+            <p class="subtitle">Turizm təcrübəsini parçalanmış vəziyyətdən vahid rəqəmsal axına keçirmək.</p>
+            <div class="grid-container">
+                <div class="card">
+                    <i class="ph ph-target"></i>
+                    <h3>Hədəf</h3>
+                    <p>Hər bir səyahətçinin cibində lüks və şəxsi köməkçi (Concierge) təcrübəsini yaratmaq.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-globe"></i>
+                    <h3>Qloballaşma</h3>
+                    <p>Baku-dan başlayaraq Körfəz və Avropa bazarlarına "Scalable" (böyüyə bilən) infrastruktur qurmaq.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-lightning"></i>
+                    <h3>Sürət</h3>
+                    <p>"One-Click" məntiqi ilə bütün logistikanın saniyələr ərzində həll edilməsi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Problem Analizi (Dərin) -->
+        <section class="slide future">
+            <h2>Problem: Parçalanmış Turizm</h2>
+            <div class="split">
+                <div class="split-box">
+                    <ul class="list-style">
+                        <li><i class="ph ph-x-circle" style="color: #FF4B2B;"></i> <b>App Fatigue:</b> Turistlər 5-7 fərqli tətbiq yükləməli olurlar.</li>
+                        <li><i class="ph ph-x-circle" style="color: #FF4B2B;"></i> <b>Data Silos:</b> Məlumatlar bir tətbiqdən digərinə ötürülmür.</li>
+                        <li><i class="ph ph-x-circle" style="color: #FF4B2B;"></i> <b>Offline Gap:</b> İnternet kəsildikdə bütün xidmət dayanır.</li>
+                        <li><i class="ph ph-x-circle" style="color: #FF4B2B;"></i> <b>Trust Issue:</b> Yerli "scam" xidmətlərdən qorunma mexanizmi yoxdur.</li>
+                    </ul>
+                </div>
+                <div class="split-box">
+                    <div class="card" style="border-color: #FF4B2B;">
+                        <h3>İtirilmiş Gəlir</h3>
+                        <p>Turizm subyektləri pərakəndə xidmət səbəbindən potensial gəlirin 25%-ni çarpaz satış (cross-sell) imkanlarını itirdiyi üçün əldə edə bilmir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Həll (The SOLUTION) -->
+        <section class="slide future">
+            <h2>Həll: One Way Super App</h2>
+            <p class="subtitle">Bütün ehtiyacları bir "Konteyner" tətbiqdə birləşdirən Texnoloji Konus.</p>
+            <div class="grid-container">
+                <div class="card">
+                    <i class="ph ph-car-profile"></i>
+                    <h3>Mobillik</h3>
+                    <p>Taksi, Mikromobillik və İctimai nəqliyyatın vahid API-da birləşməsi.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-wallet"></i>
+                    <h3>Fintech</h3>
+                    <p>Vahid pulqabı və "Contactless" ödənişlərin hər yerdə keçərli olması.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-robot"></i>
+                    <h3>AI Bələdçi</h3>
+                    <p>Süni intellektlə şəxsi marşrutların qurulması və məkan analitikası.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Solution 1 - Transport Hub -->
+        <section class="slide future">
+            <h2>Həll #1: Nəqliyyat İnteqrasiyası</h2>
+            <ul class="list-style">
+                <li><b>Ride-Sharing:</b> Bolt/Uber/Yandex API-larının vahid interfeysə yığılması.</li>
+                <li><b>Micro-Mobility:</b> Skuterlərin BLE (Bluetooth Low Energy) və GPS üzərindüs idarəsi.</li>
+                <li><b>Public Transit:</b> Metro və avtobuslar üçün QR-kod əsaslı GTFS (General Transit Feed Specification) inteqrasiyası.</li>
+            </ul>
+            <div style="margin-top: 15px;">
+                <span class="tech-tag">REST API</span> <span class="tech-tag">Webhooks</span> <span class="tech-tag">Real-time GPS</span>
+            </div>
+        </section>
+
+        <!-- Slide 6: Solution 2 - Fintech & Wallet -->
+        <section class="slide future">
+            <h2>Həll #2: Maliyyə Ekosistemi</h2>
+            <div class="split">
+                <div class="split-box">
+                    <p style="margin-bottom: 15px;">İstifadəçilər öz yerli kartlarını bir dəfə bağlayır və One Way daxilində "Virtual Card" vasitəsilə ödəniş edirlər.</p>
+                    <ul class="list-style">
+                        <li><b>Escrow ödənişlər:</b> Xidmət tamalanana qədər vəsaitin qorunması.</li>
+                        <li><b>Auto-Currency:</b> Avtomatik məzənnə çevrilməsi (Real-time).</li>
+                    </ul>
+                </div>
+                <div class="split-box">
+                    <div class="card">
+                        <h3>Texniki Tələb</h3>
+                        <p>PCI DSS uyğunluğu və Tokenizasiya texnologiyası ilə 100% təhlükəsizlik.</p>
+                        <span class="tech-tag">PCI DSS</span> <span class="tech-tag">SSL 256-bit</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Solution 3 - AI Video Facts -->
+        <section class="slide future">
+            <h2>Həll #3: AI və Məkan Təcrübəsi</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <i class="ph ph-video"></i>
+                    <h3>Video Facts</h3>
+                    <p>Məkan haqqında AI tərəfindən generasiya edilmiş qısa videolar.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-microphone"></i>
+                    <h3>Auto-Dublyaj</h3>
+                    <p>Mətnlərin turistin ana dilində (Az, Ru, En, Ar) səsləndirilməsi.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-path"></i>
+                    <h3>Smart Route</h3>
+                    <p>İstifadəçinin maraqlarına görə (tarix, əyləncə, food) dinamik yol xəritəsi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Texniki İnteqrasiyalar (Can be done) -->
+        <section class="slide future">
+            <h2>Nələri İnteqrasiya Edə Bilərik?</h2>
+            <ul class="list-style">
+                <li><b>Mapbox/Google Maps:</b> Hiper-lokal xəritəçəkmə və naviqasiya.</li>
+                <li><b>Stripe/Adyen/Local Banks:</b> Qlobal və lokal ödəniş qapıları.</li>
+                <li><b>iTicket/Global Tickets:</b> Mədəni tədbirlərə birbaşa bilet satışı.</li>
+                <li><b>eSIM API:</b> Gələn kimi tətbiqdaxili internet paketi satışı.</li>
+            </ul>
+        </section>
+
+        <!-- Slide 9: Texniki Məhdudiyyətlər (Challenges) -->
+        <section class="slide future">
+            <h2>Məhdudiyyətlər və Risk Menecmenti</h2>
+            <ul class="list-style">
+                <li><i class="ph ph-warning"></i> <b>Data Privacy:</b> GDPR və yerli məlumat qanunvericiliyi.</li>
+                <li><i class="ph ph-warning"></i> <b>Legacy APIs:</b> Bəzi yerli nəqliyyat sistemlərinin rəqəmsal infrastrukturunun olmaması.</li>
+                <li><i class="ph ph-warning"></i> <b>Battery Drain:</b> Arxa fonda işləyən GPS-in optimallaşdırılması.</li>
+                <li><i class="ph ph-warning"></i> <b>Connectivity:</b> İnternet zəif olan yerlərdə "Offline Ticket" dəstəyi.</li>
+            </ul>
+        </section>
+
+        <!-- Slide 10: Texniki Memarlıq -->
+        <section class="slide future">
+            <h2>Sistem Arxitekturası</h2>
+            <div class="card" style="width: 100%; border-style: dashed; text-align: center;">
+                <p style="font-size: 18px; margin-bottom: 20px;">Microservices & API First Approach</p>
+                <div style="display: flex; justify-content: space-around; font-size: 12px;">
+                    <div class="card">Mobile UI (React Native/Flutter)</div>
+                    <div style="align-self: center;">→</div>
+                    <div class="card">API Gateway (Node.js/Go)</div>
+                    <div style="align-self: center;">→</div>
+                    <div class="card">Cloud Database (PostgreSQL/Redis)</div>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: var(--text-dim);">AWS/Azure serverlərində 99.9% əlçatanlıq (High Availability).</p>
+        </section>
+
+        <!-- Slide 11: Bazar Analizi -->
+        <section class="slide future">
+            <h2>Strateji Koridorlar</h2>
+            <table>
+                <tr><th>Bazar</th><th>Turist Sayı (Hədəf)</th><th>Xərcləmə Gücü</th><th>Rəqəmsal Səviyyə</th></tr>
+                <tr><td>Rusiya</td><td>1.5M+</td><td>Yüksək</td><td>Çox Yüksək</td></tr>
+                <tr><td>UAE / Körfəz</td><td>800K+</td><td>Ultra Yüksək</td><td>Yüksək</td></tr>
+                <tr><td>Türkiyə</td><td>2.0M+</td><td>Orta-Yüksək</td><td>Yüksək</td></tr>
+            </table>
+        </section>
+
+        <!-- Slide 12: Biznes Modeli -->
+        <section class="slide future">
+            <h2>Monetizasiya Kanalları</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="metric-value">15%</div>
+                    <h3>Bilet/Rezerv</h3>
+                    <p>Tədbir və otel bronlarından gələn komissiya.</p>
+                </div>
+                <div class="card">
+                    <div class="metric-value">0.50 ₼</div>
+                    <h3>Mobillik haqqı</h3>
+                    <p>Hər taksi və skuter sifarişi üçün platforma rüsumu.</p>
+                </div>
+                <div class="card">
+                    <div class="metric-value">eSIM</div>
+                    <h3>Data Sales</h3>
+                    <p>İnternet paketlərinin satışından gələn marja.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Maliyyə Proqnozları -->
+        <section class="slide future">
+            <h2>3 İllik Maliyyə Planı (Milyon USD)</h2>
+            <table>
+                <thead>
+                    <tr><th>Göstərici</th><th>Y1</th><th>Y2</th><th>Y3</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>GMV (Ticarət Həcmi)</td><td>$3.2M</td><td>$12.5M</td><td>$45.0M</td></tr>
+                    <tr><td>Net Revenue</td><td>$0.4M</td><td>$1.8M</td><td>$7.5M</td></tr>
+                    <tr><td>Marketing Exp.</td><td>$0.2M</td><td>$0.6M</td><td>$1.5M</td></tr>
+                    <tr><td>EBITDA</td><td>-$0.1M</td><td>+$0.5M</td><td>+$4.2M</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Slide 14: Yol Xəritəsi -->
+        <section class="slide future">
+            <h2>Roadmap: 2025-2026</h2>
+            <ul class="list-style">
+                <li><b>Q1 2025:</b> MVP Buraxılışı (Baku: Taksi + iTicket).</li>
+                <li><b>Q3 2025:</b> AI Concierge və Video Facts modullarının aktivasiyası.</li>
+                <li><b>Q1 2026:</b> Regional genişlənmə (Tbilisi, İstanbul).</li>
+                <li><b>Q4 2026:</b> Qlobal eSIM və Fintech ödəniş kartlarının buraxılışı.</li>
+            </ul>
+        </section>
+
+        <!-- Slide 15: Komanda -->
+        <section class="slide future">
+            <h2>İdarə Heyəti</h2>
+            <div class="grid-container">
+                <div class="card"><h3>Rəşad Z.</h3><p>Founder & Vision</p></div>
+                <div class="card"><h3>Əli M.</h3><p>Chief Architect</p></div>
+                <div class="card"><h3>Leyla Q.</h3><p>Operations Head</p></div>
+            </div>
+        </section>
+
+        <!-- Slide 16: İnteqrasiya Faktoru -->
+        <section class="slide future">
+            <h2>Niyə One Way?</h2>
+            <p class="subtitle">Biz sadəcə tətbiq deyilik, biz bir "İnteqrasiya Layeri"yik.</p>
+            <div class="card" style="border-color: var(--accent);">
+                <p>Mövcud bütün API-ları vahid rəqəmsal pasportda birləşdirərək, turistin şəhərdə keçirdiyi hər saniyəni kapitallaşdırırıq.</p>
+            </div>
+        </section>
+
+        <!-- Slide 17: Yekun -->
+        <section class="slide future">
+            <h1 style="color: var(--accent);">One Way</h1>
+            <p class="subtitle" style="font-size: 24px;">Gələcəyin Turizm Standartı</p>
+            <div class="card" style="padding: 20px 60px; text-align: center;">
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 10px;">invest@oneway.global</p>
+                <p style="color: var(--accent); font-weight: 700; font-size: 20px;">+994 55 289 69 54</p>
+                <p style="color: var(--accent); font-weight: 700; font-size: 20px;">+994 50 483 82 82</p>
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--glass-border); opacity: 0.8;">
+                    <p style="font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">The Future of Travel</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="slide-number"><span id="current-slide">1</span> / 17</div>
+
+    <div class="nav-controls">
+        <div class="nav-btn" onclick="prevSlide()"><i class="ph ph-arrow-left"></i></div>
+        <div class="nav-btn" onclick="nextSlide()"><i class="ph ph-arrow-right"></i></div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const currentSlideEl = document.getElementById('current-slide');
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'past', 'future');
+                if (index === currentSlideIndex) slide.classList.add('active');
+                else if (index < currentSlideIndex) slide.classList.add('past');
+                else slide.classList.add('future');
+            });
+            currentSlideEl.innerText = currentSlideIndex + 1;
+        }
+
+        function nextSlide() { if (currentSlideIndex < slides.length - 1) { currentSlideIndex++; updateSlides(); } }
+        function prevSlide() { if (currentSlideIndex > 0) { currentSlideIndex--; updateSlides(); } }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>

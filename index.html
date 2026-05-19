@@ -2,496 +2,243 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Way - Turizm 2.0 | Strateji Təqdimat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>One Way - Global Travel OS</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
-        :root {
-            --bg: #030712;
-            --surface: #0f172a;
-            --accent: #22d3ee;
-            --accent-glow: rgba(34, 211, 238, 0.3);
-            --gold: #fbbf24;
-            --text: #f8fafc;
-            --text-dim: #94a3b8;
-            --glass: rgba(15, 23, 42, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --gradient: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            overflow: hidden;
-            height: 100vh;
-            line-height: 1.5;
-        }
-
-        /* Ambient Background */
-        .bg-mesh {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: 
-                radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, transparent 100%);
-        }
-
-        .stars {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: radial-gradient(white 1px, transparent 1px);
-            background-size: 50px 50px; opacity: 0.05;
-        }
-
-        .container { 
-            width: 100vw; 
-            height: 100vh; 
-            position: relative; 
-            perspective: 1200px;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 40px 10%;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-            transform: scale(1.1) translateY(20px);
-            filter: blur(10px);
-        }
-
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1) translateY(0);
-            filter: blur(0);
-        }
-
-        .slide.prev {
-            transform: scale(0.9) translateY(-20px);
-            opacity: 0;
-        }
-
-        /* Typography */
-        h1 { font-size: clamp(60px, 12vw, 120px); font-weight: 800; letter-spacing: -4px; line-height: 0.9; margin-bottom: 30px; }
-        h2 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 40px; display: flex; align-items: center; gap: 20px; }
-        h2 i { 
-            width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
-            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        
-        .subtitle { font-size: clamp(18px, 3vw, 24px); color: var(--text-dim); margin-bottom: 40px; font-weight: 400; max-width: 700px; }
-
-        /* Components */
-        .glass-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-
-        /* Grid Layouts */
-        .grid { display: grid; gap: 24px; width: 100%; }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-
-        /* Animation Classes */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
-        .slide.active .reveal { opacity: 1; transform: translateY(0); }
-        .delay-1 { transition-delay: 0.2s; }
-        .delay-2 { transition-delay: 0.4s; }
-        .delay-3 { transition-delay: 0.6s; }
-
-        /* Feature Icons */
-        .feature-icon { font-size: 40px; color: var(--accent); margin-bottom: 20px; text-shadow: 0 0 15px var(--accent-glow); }
-
-        /* Nav */
-        .nav-controls {
-            position: fixed; bottom: 40px; right: 40px; display: flex; gap: 15px; z-index: 1000;
-        }
-        .nav-btn {
-            width: 60px; height: 60px; border-radius: 20px; background: var(--glass); border: 1px solid var(--glass-border);
-            color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-        .nav-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); transform: scale(1.1); }
-
-        .progress-container {
-            position: fixed; bottom: 40px; left: 40px; display: flex; align-items: center; gap: 20px; z-index: 1000;
-        }
-        .progress-bar { width: 150px; height: 6px; background: var(--glass); border-radius: 3px; overflow: hidden; }
-        .progress-fill { width: 0%; height: 100%; background: var(--gradient); transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        .slide-num { font-family: monospace; font-size: 16px; color: var(--text-dim); }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .slide { padding: 40px 6%; justify-content: flex-start; padding-top: 100px; overflow-y: auto; }
-            h1 { font-size: 50px; letter-spacing: -2px; }
-            h2 { font-size: 28px; }
-            .grid { gap: 15px; }
-            .nav-controls { bottom: 20px; right: 20px; }
-            .nav-btn { width: 50px; height: 50px; border-radius: 15px; }
-            .progress-container { bottom: 20px; left: 20px; }
-            .progress-bar { width: 80px; }
-        }
-
-        /* Specific Slide Designs */
-        .stat-value { font-size: 64px; font-weight: 800; color: var(--accent); letter-spacing: -2px; }
-        .problem-tag { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #f87171; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; margin-bottom: 10px; display: inline-block; }
-        
-        .roadmap-item { position: relative; padding: 30px; }
-        .roadmap-item::before { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--gradient); border-radius: 2px; opacity: 0.3; }
-        .roadmap-item.active::before { opacity: 1; box-shadow: 0 0 15px var(--accent); }
-
-        /* Chart */
-        .chart-container { height: 300px; display: flex; align-items: flex-end; gap: 30px; padding: 20px; border-bottom: 2px solid var(--glass-border); }
-        .chart-bar-group { flex: 1; display: flex; align-items: flex-end; gap: 8px; height: 100%; position: relative; }
-        .bar { width: 100%; border-radius: 8px 8px 0 0; transition: height 1.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .bar-revenue { background: #0ea5e9; }
-        .bar-profit { background: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
-        .chart-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 15px; font-size: 12px; color: var(--text-dim); }
-    </style>
 </head>
 <body>
-    <div class="bg-mesh"></div>
-    <div class="stars"></div>
+    <!-- Onboarding -->
+    <div id="onboarding-screen">
+        <div class="onboarding-slider" id="onboarding-slider">
+            <div class="onboarding-slide">
+                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=World" class="onboarding-img">
+                <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 15px;">Xoş gəlmisiniz!</h1>
+                <p style="opacity: 0.7;">One Way - Sizin bütün səyahət ehtiyaclarınızı birləşdirən vahid Travel OS sistemidir.</p>
+            </div>
+            <div class="onboarding-slide">
+                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Plane" class="onboarding-img">
+                <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 15px;">Hər şey bir yerdə</h1>
+                <p style="opacity: 0.7;">Uçuşlar, Otellər, Taksi və eSIM - hamısı bir tətbiq daxilində.</p>
+            </div>
+            <div class="onboarding-slide">
+                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Secure" class="onboarding-img">
+                <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 15px;">Təhlükəsiz və Sürətli</h1>
+                <p style="opacity: 0.7;">Tək toxunuşla ödəniş və 24/7 SOS dəstəyi ilə səyahətiniz tam qorunur.</p>
+            </div>
+        </div>
+        <div style="padding: 0 40px 60px;">
+            <div class="onboarding-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <button class="ios-btn-primary" id="onboarding-next">Növbəti</button>
+        </div>
+    </div>
 
-    <div class="container" id="slide-container">
-        <!-- Slide 1: Title -->
-        <section class="slide">
-            <div class="reveal">
-                <span style="color: var(--accent); font-weight: 700; letter-spacing: 4px; text-transform: uppercase; font-size: 14px;">Turizm 2.0 Inqilabı</span>
-                <h1>One <span style="color: var(--accent)">Way</span></h1>
-                <p class="subtitle">The Smart Traveler's Super App. Azərbaycandan başlayaraq qlobal turizm sənayesini rəqəmsallaşdırırıq.</p>
+    <div class="app-container">
+        <div class="sos-button" id="sos-trigger">SOS</div>
+
+        <header class="header">
+            <div class="logo">One Way</div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <i class="ph ph-qr-code" style="font-size: 24px; color: var(--accent);" onclick="switchScreen('scanner')"></i>
+                <div class="profile-trigger glass" style="width: 40px; height: 40px;">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <!-- Burger Menu Icon -->
+                <button id="burger-menu-btn" class="glass" style="width: 44px; height: 44px; border: none; background: transparent; cursor: pointer; color: var(--text); font-size: 24px; display: flex; justify-content: center; align-items: center;">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Right Side Drawer Menu -->
+        <div id="side-drawer" class="drawer-menu">
+            <div class="drawer-header">
+                <h2>Menyu</h2>
+                <button id="close-drawer-btn" style="background: transparent; border: none; color: white; font-size: 24px; cursor: pointer;"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="drawer-content ios-list" style="background: transparent;">
+                <div class="ios-list-item" onclick="switchScreen('home')"><div style="display:flex; gap:15px; align-items:center;"><i class="ph ph-house"></i><span>Ana səhifə</span></div><i class="ph ph-caret-right"></i></div>
+                <div class="ios-list-item" onclick="switchScreen('wallet')"><div style="display:flex; gap:15px; align-items:center;"><i class="ph ph-wallet"></i><span>Ödənişlər</span></div><i class="ph ph-caret-right"></i></div>
+                <div class="ios-list-item" onclick="switchScreen('ai')"><div style="display:flex; gap:15px; align-items:center;"><i class="ph ph-sparkle"></i><span>AI Assist</span></div><i class="ph ph-caret-right"></i></div>
+                <div class="ios-list-item"><div style="display:flex; gap:15px; align-items:center;"><i class="ph ph-gear"></i><span>Tənzimləmələr</span></div><i class="ph ph-caret-right"></i></div>
+                <div class="ios-list-item"><div style="display:flex; gap:15px; align-items:center; color: #FF4B2B;"><i class="ph ph-sign-out"></i><span>Çıxış</span></div></div>
+            </div>
+        </div>
+        
+        <!-- Drawer Overlay -->
+        <div id="drawer-overlay" class="drawer-overlay"></div>
+
+        <main class="main-content">
+            <!-- HOME SCREEN -->
+            <div id="screen-home" class="screen active">
+                <div class="search-container glass">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" class="search-input" placeholder="Haraya getmək istəyirsiniz?">
+                </div>
+
+                <div class="service-grid">
+                    <div class="service-item" onclick="switchScreen('ai')">
+                        <div class="service-icon glass" style="border-color: var(--accent)"><i class="ph ph-sparkle" style="color: var(--accent)"></i></div>
+                        <span class="service-label">AI Bələdçi</span>
+                    </div>
+                    <div class="service-item" onclick="switchScreen('transport')">
+                        <div class="service-icon glass"><i class="ph ph-car" style="color: #4CC9F0"></i></div>
+                        <span class="service-label">Nəqliyyat</span>
+                    </div>
+                    <div class="service-item" onclick="switchScreen('events')">
+                        <div class="service-icon glass"><i class="ph ph-ticket" style="color: #F72585"></i></div>
+                        <span class="service-label">Tədbirlər</span>
+                    </div>
+                    <div class="service-item" onclick="switchScreen('micromobility')">
+                        <div class="service-icon glass"><i class="ph ph-scooter" style="color: #4CAF50"></i></div>
+                        <span class="service-label">Skuter</span>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2>Cari Səyahət</h2>
+                </div>
+                <div class="glass trip-card" onclick="switchScreen('ticket')">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <p style="font-size: 12px; color: var(--text-dim)">Bakı (GYD) → Paris (CDG)</p>
+                            <h3 style="margin-top: 4px; font-size: 20px;">AF 1234 • Qapı B12</h3>
+                        </div>
+                        <i class="ph-fill ph-airplane-tilt" style="font-size: 28px; color: var(--accent)"></i>
+                    </div>
+                    <div style="margin-top: 15px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+                        <div style="width: 75%; height: 100%; background: var(--accent); border-radius: 2px;"></div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2>Populyar İstiqamətlər</h2>
+                </div>
+                <div class="featured-scroll" style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px;">
+                    <div class="featured-card glass" style="min-width: 220px; height: 280px; overflow: hidden; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea4e735c464?q=80&w=500" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);">
+                            <h3>Dubay</h3>
+                            <p style="font-size: 12px; opacity: 0.8;">BƏƏ • 599 AZN</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO GUIDE SCREEN -->
+            <div id="screen-video-guide" class="screen">
+                <div class="section-header">
+                    <button onclick="switchScreen('ai')" class="glass" style="width: 44px; height: 44px;"><i class="ph ph-arrow-left"></i></button>
+                    <h2 style="flex: 1; text-align: center;">AI Video Bələdçi</h2>
+                    <div style="width: 44px;"></div>
+                </div>
+                <div class="video-player">
+                    <img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=800" style="width:100%; height:100%; object-fit:cover;">
+                    <div style="position: absolute; bottom: 15px; left: 15px; right: 15px; background: rgba(0,0,0,0.6); padding: 12px; border-radius: 12px;">
+                        <p style="font-size: 12px; color: var(--accent);"><i class="ph ph-translate"></i> AI Dublyaj: Azərbaycan dili</p>
+                        <p style="font-size: 14px; margin-top: 5px;">"Bakı Xalça Muzeyi - 1967-ci ildə yaradılmış dünyada ilk xalça muzeyidir..."</p>
+                    </div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><i class="ph-fill ph-play-circle" style="font-size: 60px; color: white;"></i></div>
+                </div>
+                <div class="section-header" style="margin-top: 20px;"><h2>Digər Faktlar</h2></div>
+                <div class="ios-list">
+                    <div class="ios-list-item"><span>İçərişəhər Tarixi</span><i class="ph ph-play"></i></div>
+                    <div class="ios-list-item"><span>Qız Qalası Əfsanəsi</span><i class="ph ph-play"></i></div>
+                </div>
+            </div>
+
+            <!-- SCANNER SCREEN -->
+            <div id="screen-scanner" class="screen">
+                <div class="scanner-view">
+                    <div class="section-header" style="position: absolute; top: 0; left: 0; right: 0; padding: 24px; z-index: 10;">
+                        <button onclick="switchScreen('home')" class="glass" style="width: 44px; height: 44px; color: white;"><i class="ph ph-x"></i></button>
+                        <h2 style="flex: 1; text-align: center; color: white;">Skan et</h2>
+                        <div style="width: 44px;"></div>
+                    </div>
+                    <div class="scanner-frame">
+                        <div class="scan-line"></div>
+                    </div>
+                    <p style="position: absolute; bottom: 100px; color: white; opacity: 0.8;">Bileti və ya QR kodu çərçivəyə salın</p>
+                </div>
+            </div>
+
+            <!-- AI SCREEN -->
+            <div id="screen-ai" class="screen">
+                <div class="section-header">
+                    <button onclick="switchScreen('home')" class="glass" style="width: 44px; height: 44px;"><i class="ph ph-arrow-left"></i></button>
+                    <h2 style="flex: 1; text-align: center;">AI Bələdçi</h2>
+                    <div style="width: 44px;"></div>
+                </div>
                 
-                <div style="display: flex; gap: 30px; align-items: center; margin-top: 40px;">
-                    <div class="glass-card" style="padding: 20px 40px;">
-                        <p style="font-size: 12px; color: var(--text-dim);">STRATEGİYA</p>
-                        <p style="font-size: 18px; font-weight: 700;">2025 - 2027</p>
+                <!-- AI Video Guide Entry -->
+                <div class="glass" style="padding: 16px; margin-bottom: 20px;" onclick="switchScreen('video-guide')">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <h3 style="font-size: 14px;"><i class="ph ph-video-camera" style="color: var(--accent)"></i> AI Video Facts</h3>
+                        <span style="font-size: 11px; color: var(--accent);">Görüntülə</span>
                     </div>
-                    <div style="width: 1px; height: 50px; background: var(--glass-border); display: none;"></div>
-                    <p style="font-weight: 600; opacity: 0.8; display: none;">One Way Team</p>
+                    <div style="width: 100%; height: 120px; background: #000; border-radius: 12px; position: relative; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=400" style="width:100%; height:100%; object-fit:cover; opacity:0.6;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><i class="ph-fill ph-play-circle" style="font-size: 40px; color: white;"></i></div>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Slide 2: Problem -->
-        <section class="slide">
-            <h2 class="reveal"><i class="ph ph-lightning"></i> Real Çətinliklər</h2>
-            <div class="grid grid-3">
-                <div class="glass-card reveal delay-1" style="padding: 30px;">
-                    <span class="problem-tag">Kritik</span>
-                    <i class="ph ph-wifi-slash feature-icon"></i>
-                    <h3>Bağlantı Problemi</h3>
-                    <p>Hava limanında SIM kart növbələri və yüksək rouminq xərcləri.</p>
+                <div class="chat-container" id="chat-box" style="padding: 0 10px; height: 250px;">
+                    <div class="chat-bubble bubble-ai">Salam! Mən One Way AI. Bakı haqqında nə bilmək istəyirsiniz?</div>
                 </div>
-                <div class="glass-card reveal delay-2" style="padding: 30px;">
-                    <span class="problem-tag">Yüksək Risk</span>
-                    <i class="ph ph-currency-circle-dollar feature-icon"></i>
-                    <h3>Maliyyə İtkisi</h3>
-                    <p>Məzənnə fərqi, nağd pul çətinliyi və gizli bank komissiyaları.</p>
-                </div>
-                <div class="glass-card reveal delay-3" style="padding: 30px;">
-                    <span class="problem-tag">Effektivlik</span>
-                    <i class="ph ph-circles-four feature-icon"></i>
-                    <h3>App Fatigue</h3>
-                    <p>10-dan çox müxtəlif tətbiqin idarə edilməsi (Taxi, Bilet, Hotel və s.)</p>
+                <div style="padding: 15px 0; display: flex; gap: 10px;">
+                    <input type="text" class="chat-input" placeholder="Sualınızı yazın..." style="flex:1; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 14px; color: white;">
+                    <button class="glass" style="width: 54px; height: 54px; border-radius: 16px; color: var(--accent);"><i class="ph ph-paper-plane"></i></button>
                 </div>
             </div>
-        </section>
 
-        <!-- Slide 3: Həll -->
-        <section class="slide">
-            <h2 class="reveal"><i class="ph ph-planet"></i> One Way Ekosistemi</h2>
-            <p class="subtitle reveal delay-1">Biz sadəcə tətbiq deyilik, biz turistin bütün yolçuluğunu əhatə edən "Rəqəmsal Pasport"uq.</p>
-            
-            <div class="grid grid-4 reveal delay-2">
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-broadcast feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">eSIM Data</p>
+            <!-- WALLET SCREEN -->
+            <div id="screen-wallet" class="screen">
+                <div class="section-header" style="padding-top: 20px;">
+                    <h1 style="font-size: 32px; font-weight: 700;">Pulqabı</h1>
                 </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-car feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">Smart Taxi</p>
+                <div class="wallet-card">
+                    <p style="font-size: 14px; opacity: 0.8;">Balans</p>
+                    <h1 style="font-size: 36px; font-weight: 700; margin: 8px 0;">2,450.50 ₼</h1>
+                    <p style="font-size: 12px; margin-top: 20px;">One Way Visa •••• 4582</p>
                 </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-ticket feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">Live Tickets</p>
-                </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-sparkle feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">AI Concierge</p>
-                </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-house-line feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">Hotels</p>
-                </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-fork-knife feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">Food & Fun</p>
-                </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-path feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">Custom Tours</p>
-                </div>
-                <div class="glass-card" style="padding: 20px; text-align: center;">
-                    <i class="ph ph-wallet feature-icon" style="font-size: 30px;"></i>
-                    <p style="font-weight: 600;">Global Wallet</p>
+                <div class="section-header"><h2>Son Əməliyyatlar</h2></div>
+                <div class="ios-list">
+                    <div class="ios-list-item">
+                        <div><p>Taxi (Bolt)</p><p style="font-size: 12px; opacity: 0.5;">14:20</p></div>
+                        <span style="font-weight: 600;">- 12.40 ₼</span>
+                    </div>
+                    <div class="ios-list-item">
+                        <div><p>iTicket (Concert)</p><p style="font-size: 12px; opacity: 0.5;">Dünən</p></div>
+                        <span style="font-weight: 600;">- 85.00 ₼</span>
+                    </div>
                 </div>
             </div>
-        </section>
+        </main>
 
-        <!-- Slide 4: Bazar -->
-        <section class="slide">
-            <h2 class="reveal"><i class="ph ph-chart-pie"></i> Bazar Potensialı</h2>
-            <div class="grid grid-3 reveal delay-1">
-                <div class="glass-card" style="padding: 40px; text-align: center;">
-                    <div class="stat-value">$1.9T</div>
-                    <p style="color: var(--text-dim);">Qlobal Turizm Həcmi</p>
-                </div>
-                <div class="glass-card" style="padding: 40px; text-align: center;">
-                    <div class="stat-value">3M+</div>
-                    <p style="color: var(--text-dim);">Azərbaycana Gələn Turist</p>
-                </div>
-                <div class="glass-card" style="padding: 40px; text-align: center; border-color: var(--gold);">
-                    <div class="stat-value" style="color: var(--gold);">$0</div>
-                    <p style="color: var(--text-dim);">Yerli Super-App Rəqibi</p>
-                </div>
+        <nav class="bottom-nav glass">
+            <div class="nav-item active" onclick="switchScreen('home')">
+                <i class="ph-fill ph-house nav-icon"></i>
+                <span class="nav-label">Ana səhifə</span>
             </div>
-            
-            <div class="grid grid-3 reveal delay-2" style="margin-top: 40px;">
-                <div class="roadmap-item active">
-                    <p style="color: var(--accent); font-weight: 800;">İl 1</p>
-                    <h4>Bakı Launch</h4>
-                    <p style="font-size: 13px; color: var(--text-dim);">5,000 Aktiv İstifadəçi</p>
-                </div>
-                <div class="roadmap-item">
-                    <p style="color: var(--accent); font-weight: 800;">İl 2</p>
-                    <h4>Regional Genişlənmə</h4>
-                    <p style="font-size: 13px; color: var(--text-dim);">Gürcüstan & Türkiyə</p>
-                </div>
-                <div class="roadmap-item">
-                    <p style="color: var(--accent); font-weight: 800;">İl 3</p>
-                    <h4>Qlobal Şəbəkə</h4>
-                    <p style="font-size: 13px; color: var(--text-dim);">100,000+ İstifadəçi</p>
-                </div>
+            <div class="nav-item" onclick="switchScreen('ai')">
+                <i class="ph ph-sparkle nav-icon"></i>
+                <span class="nav-label">AI Bələdçi</span>
             </div>
-        </section>
-
-        <!-- Slide 5: Business Model -->
-        <section class="slide">
-            <h2 class="reveal"><i class="ph ph-money"></i> Gəlir Kanalları</h2>
-            <div class="grid grid-2 reveal delay-1">
-                <div class="glass-card" style="padding: 30px; display: flex; gap: 20px; align-items: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: var(--accent);">15%</div>
-                    <div>
-                        <h4>Tranzaksiya Komissiyası</h4>
-                        <p style="font-size: 13px; color: var(--text-dim);">Otel, Tur və Bilet satışlarından.</p>
-                    </div>
-                </div>
-                <div class="glass-card" style="padding: 30px; display: flex; gap: 20px; align-items: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: var(--accent);">30%</div>
-                    <div>
-                        <h4>eSIM Marjası</h4>
-                        <p style="font-size: 13px; color: var(--text-dim);">Hər data paket satışından.</p>
-                    </div>
-                </div>
-                <div class="glass-card" style="padding: 30px; display: flex; gap: 20px; align-items: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: var(--accent);">SaaS</div>
-                    <div>
-                        <h4>B2B Partner Panel</h4>
-                        <p style="font-size: 13px; color: var(--text-dim);">Restoran və ticarət obyektləri üçün.</p>
-                    </div>
-                </div>
-                <div class="glass-card" style="padding: 30px; display: flex; gap: 20px; align-items: center;">
-                    <div style="font-size: 32px; font-weight: 800; color: var(--accent);">ADS</div>
-                    <div>
-                        <h4>Premium Listing</h4>
-                        <p style="font-size: 13px; color: var(--text-dim);">Platforma daxili reklam imkanları.</p>
-                    </div>
-                </div>
+            <div class="nav-item" onclick="switchScreen('wallet')">
+                <i class="ph ph-wallet nav-icon"></i>
+                <span class="nav-label">Pulqabı</span>
             </div>
-        </section>
-
-        <!-- Slide 6: Financials -->
-        <section class="slide">
-            <h2 class="reveal"><i class="ph ph-graph"></i> Maliyyə Proqnozu</h2>
-            <div class="grid grid-2 reveal delay-1" style="align-items: center;">
-                <div class="glass-card" style="padding: 30px;">
-                    <div class="chart-container">
-                        <div class="chart-bar-group">
-                            <div class="bar bar-revenue" style="height: 10%;"></div>
-                            <div class="bar bar-profit" style="height: 5%; background: #f87171;"></div>
-                            <div class="chart-label">İl 1</div>
-                        </div>
-                        <div class="chart-bar-group">
-                            <div class="bar bar-revenue" style="height: 40%;"></div>
-                            <div class="bar bar-profit" style="height: 20%;"></div>
-                            <div class="chart-label">İl 2</div>
-                        </div>
-                        <div class="chart-bar-group">
-                            <div class="bar bar-revenue" style="height: 100%;"></div>
-                            <div class="bar bar-profit" style="height: 70%;"></div>
-                            <div class="chart-label">İl 3</div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 20px; justify-content: center; margin-top: 50px; font-size: 12px;">
-                        <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 10px; height: 10px; background: #0ea5e9; border-radius: 2px;"></div> Gəlir</div>
-                        <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 10px; height: 10px; background: var(--accent); border-radius: 2px;"></div> Mənfəət</div>
-                    </div>
-                </div>
-                <div class="grid reveal delay-2">
-                    <div class="glass-card" style="padding: 20px; display: flex; justify-content: space-between;">
-                        <span>İnvestisiya</span>
-                        <span style="color: var(--accent); font-weight: 700;">$81K - $105K</span>
-                    </div>
-                    <div class="glass-card" style="padding: 20px; display: flex; justify-content: space-between;">
-                        <span>Valuation (Y3)</span>
-                        <span style="color: var(--accent); font-weight: 700;">~$12.0M</span>
-                    </div>
-                    <div class="glass-card" style="padding: 20px; display: flex; justify-content: space-between;">
-                        <span>Profitability</span>
-                        <span style="color: var(--accent); font-weight: 700;">İl 2</span>
-                    </div>
-                </div>
+            <div class="nav-item">
+                <i class="ph ph-user nav-icon"></i>
+                <span class="nav-label">Profil</span>
             </div>
-        </section>
-
-        <!-- Slide 7: Why -->
-        <section class="slide">
-            <h2 class="reveal"><i class="ph ph-star"></i> Niyə İndi? Niyə Biz?</h2>
-            <div class="grid grid-2 reveal delay-1">
-                <div class="glass-card" style="padding: 30px;">
-                    <h4 style="color: var(--accent); margin-bottom: 10px;">İlk Lokal Super-App</h4>
-                    <p style="font-size: 14px; color: var(--text-dim);">Regionda bu miqyasda inteqrasiya olunmuş rəqib yoxdur. Bazarın rəqəmsal boşluğunu biz doldururuq.</p>
-                </div>
-                <div class="glass-card" style="padding: 30px;">
-                    <h4 style="color: var(--accent); margin-bottom: 10px;">Tech-Edge</h4>
-                    <p style="font-size: 14px; color: var(--text-dim);">AI Concierge və eSIM texnologiyalarının birbaşa tətbiqi bizi ənənəvi tətbiqlərdən 5 il qabağa atır.</p>
-                </div>
-                <div class="glass-card" style="padding: 30px;">
-                    <h4 style="color: var(--accent); margin-bottom: 10px;">Scalable Model</h4>
-                    <p style="font-size: 14px; color: var(--text-dim);">Azərbaycanda test edilmiş model asanlıqla digər regional turizm mərkəzlərinə transfer edilə bilər.</p>
-                </div>
-                <div class="glass-card" style="padding: 30px;">
-                    <h4 style="color: var(--accent); margin-bottom: 10px;">End-to-End UX</h4>
-                    <p style="font-size: 14px; color: var(--text-dim);">İstifadəçi səyahətin hər bir mərhələsində bizim ekosistemdə qalır, bu da yüksək "Customer LTV" deməkdir.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 8: Contact -->
-        <section class="slide">
-            <div class="reveal" style="text-align: center;">
-                <h1 style="font-size: clamp(40px, 8vw, 80px);">Gələcəyi <span style="color: var(--accent)">Birlikdə</span> Quraq</h1>
-                <p class="subtitle" style="margin: 0 auto 50px;">One Way - Səyahət sənayesinin yeni əməliyyat sistemi.</p>
-                
-                <div class="glass-card" style="display: inline-block; padding: 40px 60px; text-align: center;">
-                    <p style="color: var(--accent); font-weight: 700; letter-spacing: 2px; margin-bottom: 20px;">INVEST@ONEWAY.GLOBAL</p>
-                    <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center;">
-                        <i class="ph ph-linkedin-logo" style="font-size: 24px; cursor: pointer;"></i>
-                        <i class="ph ph-globe" style="font-size: 24px; cursor: pointer;"></i>
-                        <i class="ph ph-instagram-logo" style="font-size: 24px; cursor: pointer;"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </nav>
     </div>
 
-    <div class="progress-container">
-        <div class="slide-num"><span id="curr-num">01</span></div>
-        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-        <div class="slide-num">08</div>
-    </div>
-
-    <div class="nav-controls">
-        <div class="nav-btn" id="prev-btn"><i class="ph ph-arrow-left"></i></div>
-        <div class="nav-btn" id="next-btn"><i class="ph ph-arrow-right"></i></div>
-    </div>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        const nextBtn = document.getElementById('next-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        const progressFill = document.getElementById('progress-fill');
-        const currNum = document.getElementById('curr-num');
-
-        function updateSlides() {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active', 'prev');
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                } else if (index < currentSlide) {
-                    slide.classList.add('prev');
-                }
-            });
-            
-            progressFill.style.width = ((currentSlide + 1) / totalSlides) * 100 + '%';
-            currNum.innerText = String(currentSlide + 1).padStart(2, '0');
-
-            // Trigger animations
-            const activeSlide = slides[currentSlide];
-            const reveals = activeSlide.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, 100);
-            });
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlides();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                if (currentSlide < totalSlides - 1) { currentSlide++; updateSlides(); }
-            }
-            if (e.key === 'ArrowLeft') {
-                if (currentSlide > 0) { currentSlide--; updateSlides(); }
-            }
-        });
-
-        // Touch support
-        let touchStartX = 0;
-        document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-        document.addEventListener('touchend', e => {
-            const touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextBtn.click();
-            if (touchEndX - touchStartX > 50) prevBtn.click();
-        });
-
-        updateSlides();
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
